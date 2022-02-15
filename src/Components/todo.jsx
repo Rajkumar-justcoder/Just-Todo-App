@@ -1,26 +1,31 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
 
-let globalID = 0
+let globalID = 0;
+
+
 
 function todo() {
 
     const [task, settask] = useState('')
     const [todos, settodos] = useState([])
-    const [currentindex, setcurrentindex] = useState(0);
+    // const [currentindex, setcurrentindex] = useState(0);
+
 
     function createtodo(event) {
         event.preventDefault()
         settodos(old => {
             settask('')
             let data
-            data= [...old, { todo: task, id: globalID }]
-                   
+            data = [...old, { todo: task, id: globalID }]
+            // setcurrentindex((old) => old + 1)
             return data;
         })
-        setcurrentindex((old) => old+1)
+        
         globalID++;
     }
+
+
     function itemremove(itemID) {
         settodos(oldtodo => oldtodo.filter(items => items.id !== itemID))
     }
@@ -37,9 +42,6 @@ function todo() {
                             placeholder='Add Todo Items'
                             type='text' value={task}
                             onChange={event => {
-                                // if (event.target.value === null){
-
-                                // }
                                 settask(event.target.value)
                             }}
                             required />
@@ -53,7 +55,7 @@ function todo() {
                 {todos.map((item) => {
                     return <div className='d-flex justify-content-center w-75 p-1' key={item.id}>
                         <div className='w-50 d-flex justify-content-around'>
-                            <li className='m-2  text-decoration-none'>{currentindex}</li>
+                            <li className='m-2  text-decoration-none'>{item.id}</li>
                             <li className='m-2  text-decoration-none'>{item.todo}</li>
                             <button className='btn btn-danger' onClick={() => itemremove(item.id)}>Delete</button>
                         </div>
