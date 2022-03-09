@@ -7,6 +7,7 @@ const app_name = "Todo-app";
 
 const getlocal = () => {
     let localitem = localStorage.getItem(app_name)
+    // console.log(JSON.parse(localitem)[0].id);
 
     if (localitem) {
         return JSON.parse(localitem);
@@ -40,7 +41,6 @@ function todo() {
     function itemremove(itemID) {
         settodos(oldtodo => oldtodo.filter(items => items.id !== itemID))
     }
-    console.log(JSON.stringify(todos));
 
     useEffect(() => {
         localStorage.setItem(app_name, JSON.stringify(todos))
