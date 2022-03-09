@@ -1,14 +1,25 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 let globalID = 0;
 
+const app_name = "Todo-app";
+
+const getlocal = () => {
+    let localitem = localStorage.getItem(app_name)
+
+    if (localitem) {
+        return JSON.parse(localitem);
+    } else {
+        return []
+    }
+}
 
 
 function todo() {
 
     const [task, settask] = useState('')
-    const [todos, settodos] = useState([])
+    const [todos, settodos] = useState(getlocal())
     // const [currentindex, setcurrentindex] = useState(0);
 
 
@@ -21,7 +32,7 @@ function todo() {
             // setcurrentindex((old) => old + 1)
             return data;
         })
-        
+
         globalID++;
     }
 
@@ -29,6 +40,12 @@ function todo() {
     function itemremove(itemID) {
         settodos(oldtodo => oldtodo.filter(items => items.id !== itemID))
     }
+    console.log(JSON.stringify(todos));
+
+    useEffect(() => {
+        localStorage.setItem(app_name, JSON.stringify(todos))
+    }, [todos])
+
 
 
     return <div>

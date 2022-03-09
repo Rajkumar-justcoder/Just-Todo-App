@@ -6,7 +6,7 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <a className="nav-link" href='#'>
-                    <img src="apple-touch-icon.png" className='main-logo' alt="Logo" />
+                    <div className='logo'>Todo</div>
                 </a>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
